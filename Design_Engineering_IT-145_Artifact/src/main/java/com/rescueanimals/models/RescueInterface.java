@@ -1,4 +1,4 @@
-package models;
+package com.rescueanimals.models;
 
 public interface RescueInterface {
     String getName();

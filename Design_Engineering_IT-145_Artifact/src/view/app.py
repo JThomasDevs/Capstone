@@ -1,7 +1,10 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-from ..controllers.rescue_api import RescueSystemAPI, Dog, Monkey
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from controllers.rescue_api import RescueSystemAPI, Dog, Monkey
 
 # Configure the page
 st.set_page_config(
@@ -10,25 +13,59 @@ st.set_page_config(
     layout="wide"
 )
 
+# Custom CSS for the navbar
+st.markdown("""
+<style>
+    .nav-button {
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        background-color: #f0f2f6;
+        border-radius: 5px;
+        margin: 2px;
+        cursor: pointer;
+    }
+    .nav-button:hover {
+        background-color: #e0e2e6;
+    }
+    .selected {
+        background-color: #1f77b4;
+        color: white;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Initialize the API
 api = RescueSystemAPI()
 
 def main():
     st.title("🐾 Rescue Animal System")
     
-    # Sidebar navigation
-    page = st.sidebar.selectbox(
-        "Navigation",
-        ["Home", "Add New Animal", "View Animals", "Reserve Animal"]
-    )
+    # Create navigation bar using columns
+    cols = st.columns(4)
+    pages = ["Home", "Add New Animal", "View Animals", "Reserve Animal"]
     
-    if page == "Home":
+    # Get current page from session state or set default
+    if 'current_page' not in st.session_state:
+        st.session_state.current_page = "Home"
+    
+    # Create navigation buttons
+    for i, page in enumerate(pages):
+        selected = st.session_state.current_page == page
+        button_style = "selected" if selected else ""
+        if cols[i].button(page, key=f"nav_{page}", use_container_width=True):
+            st.session_state.current_page = page
+    
+    st.markdown("---")  # Horizontal line under navbar
+    
+    # Display the selected page
+    if st.session_state.current_page == "Home":
         show_home()
-    elif page == "Add New Animal":
+    elif st.session_state.current_page == "Add New Animal":
         show_add_animal()
-    elif page == "View Animals":
+    elif st.session_state.current_page == "View Animals":
         show_view_animals()
-    elif page == "Reserve Animal":
+    elif st.session_state.current_page == "Reserve Animal":
         show_reserve_animal()
 
 def show_home():

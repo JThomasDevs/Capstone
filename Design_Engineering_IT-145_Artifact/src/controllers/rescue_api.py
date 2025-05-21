@@ -19,36 +19,47 @@ class Animal:
 
 @dataclass
 class Dog(Animal):
-    breed: str
+    breed: str = None
 
 @dataclass
 class Monkey(Animal):
-    tail_length: str
-    height: str
-    body_length: str
-    species: str
+    species: str = None
+    tail_length: str = None
+    height: str = None
+    body_length: str = None
 
 class RescueSystemAPI:
     def __init__(self, java_path: str = None):
-        self.java_cmd = "java -cp ../../target/classes:../../target/dependency/* Driver"
-        if os.name == 'nt':  # Windows
-            self.java_cmd = "java -cp ../../target/classes;../../target/dependency/* Driver"
-        
         if java_path:
-            self.java_cmd = f"java -cp {java_path} Driver"
+            self.java_cmd = f"java -cp {java_path} com.rescueanimals.controllers.Driver"
+        else:
+            base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            target_path = os.path.join(base_path, "target", "classes")
+            deps_path = os.path.join(base_path, "target", "dependency", "gson-2.10.1.jar")
+            classpath = f"{target_path}{os.pathsep}{deps_path}"
+            self.java_cmd = f"java -cp \"{classpath}\" com.rescueanimals.controllers.Driver"
 
     def _run_java_command(self, args: List[str]) -> dict:
         """Execute a Java command and return the parsed JSON response"""
         try:
             cmd = f"{self.java_cmd} {' '.join(args)}"
+            print(f"Executing command: {cmd}")  # Debug output
             result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+            
+            print(f"Return code: {result.returncode}")  # Debug output
+            print(f"Stdout: {result.stdout}")  # Debug output
+            print(f"Stderr: {result.stderr}")  # Debug output
             
             if result.returncode != 0:
                 raise Exception(f"Java command failed: {result.stderr}")
             
+            if not result.stdout.strip():
+                raise Exception("Empty response from Java backend")
+            
             return json.loads(result.stdout)
-        except json.JSONDecodeError:
-            raise Exception("Invalid JSON response from Java backend")
+        except json.JSONDecodeError as e:
+            print(f"JSON decode error: {str(e)}")  # Debug output
+            raise Exception(f"Invalid JSON response from Java backend: {str(e)}")
         except Exception as e:
             raise Exception(f"Error running Java command: {str(e)}")
 

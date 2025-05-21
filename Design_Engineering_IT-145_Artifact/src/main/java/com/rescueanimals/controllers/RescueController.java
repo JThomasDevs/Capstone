@@ -24,12 +24,40 @@ public class RescueController {
         monkeySpeciesList.add("tamarin");
     }
 
+    private static class ListResponse<T> {
+        final ArrayList<T> dogs;
+        final ArrayList<T> monkeys;
+        final ArrayList<T> available;
+
+        ListResponse(ArrayList<T> dogs, ArrayList<T> monkeys, ArrayList<T> available) {
+            this.dogs = dogs;
+            this.monkeys = monkeys;
+            this.available = available;
+        }
+
+        // Constructor for dogs-only response
+        ListResponse(ArrayList<T> dogs) {
+            this.dogs = dogs;
+            this.monkeys = null;
+            this.available = null;
+        }
+
+        // Static factory methods
+        static <T> ListResponse<T> forMonkeys(ArrayList<T> monkeys) {
+            return new ListResponse<>(null, monkeys, null);
+        }
+
+        static <T> ListResponse<T> forAvailable(ArrayList<T> available) {
+            return new ListResponse<>(null, null, available);
+        }
+    }
+
     public String listDogs() {
-        return gson.toJson(dogList);
+        return gson.toJson(new ListResponse<>(new ArrayList<>(dogList)));
     }
 
     public String listMonkeys() {
-        return gson.toJson(monkeyList);
+        return gson.toJson(ListResponse.forMonkeys(new ArrayList<>(monkeyList)));
     }
 
     public String listAvailable() {
@@ -44,7 +72,7 @@ public class RescueController {
                 availableAnimals.add(monkey);
             }
         }
-        return gson.toJson(availableAnimals);
+        return gson.toJson(ListResponse.forAvailable(availableAnimals));
     }
 
     public boolean addDog(Dog dog) {
