@@ -1,27 +1,42 @@
-# CS-300 Portfolio Submission
+# AVL Tree Implementation (CS-260 Artifact)
 
-- What was the problem you were solving in the projects for this course?
+The improved CS-260 artifact now uses an **AVL tree** to store and manage course and prerequisite information. An AVL tree is a self-balancing binary search tree that ensures:
+- **Efficient search, insertion, and deletion:** All major operations are guaranteed to run in O(log n) time due to automatic balancing.
+- **Self-balancing:** After every insertion or deletion, the tree checks and restores its balance using rotations, ensuring optimal performance even as data grows.
+- **Course and prerequisite management:** Each course is stored as a node in the AVL tree, with support for prerequisites and detailed course lookups.
+- **Robust file loading:** Courses and their prerequisites can be loaded from a CSV file, with validation to ensure data integrity.
+- **User-friendly traversal:** The tree supports in-order traversal to print all courses in sorted order, as well as detailed lookups for individual courses.
 
+## Key Features
+- **Self-balancing:** Maintains a height-balanced tree for optimal performance.
+- **O(log n) operations:** Fast search, insert, and delete for course data.
+- **Prerequisite validation:** Ensures all prerequisites exist in the course list.
+- **Detailed output:** Prints course details, including prerequisites, or error messages if a course is not found.
 
-The problem being solved in the projects for this course was deciding on and implementing an appropriate data structure for storing Course information (Course ID, Course Name, Prerequisite courses) that would best enable the desired functionalities of loading course information to the data structure, printing information from all courses in alphanumeric order, and printing information about an individual course given its Course ID.
+## How to use
 
+1. **Build the project:**
+   - Make sure you have [Rust](https://www.rust-lang.org/tools/install) installed.
+   - Open a terminal in this directory and run:
+     ```sh
+     cargo build --release
+     ```
 
--  How did you approach the problem? 
-Consider why data structures are important to understand.
+2. **Prepare your course data:**
+   - Ensure you have a `CourseInput.csv` file in the top level directory of the executable (DSA_CS-260_Artifact in this case).
 
-As seen in the attached Runtime Complexity Analysis document, I analyzed the runtime and space complexities of three separate data structures (vector, hash table, binary search tree) and using this analysis, chose the binary search tree as the most appropriate data structure to fit the needs of the program.
+3. **Run the program:**
+   - In the terminal, run:
+     ```sh
+     cargo run --release
+     ```
+   - Or run the built executable from `target/release/`.
 
+4. **Using the menu:**
+   - **1. Load Courses:** Loads courses from `CourseInput.csv` into the AVL tree.
+   - **2. Print Course List:** Prints all courses in alphanumeric order, including prerequisites.
+   - **3. Print Course Information:** Enter a course ID to see detailed information and prerequisites for that course.
+   - **9. Exit:** Quit the program.
 
-- How did you overcome any roadblocks you encountered while going through the activities or project?
-
-The only significant roadblock I encountered during my completion of these two projects was the sheer amount of pseudocode that I wrote for Part One of Project One (not included in this repository). Overall, I wrote nearly 22 pages of pseudocode which was later used to complete my C++ implementation of a binary search tree and to perform runtime complexity analysis on the various data structures.
-
-
-- How has your work on this project expanded your approach to designing software and developing programs?
-
-These projects are the first time when I have had to write what I would consider to be a very large amount of pseudocode. While this process was tedious and frustrating at times, I feel that it ultimately saved me days of work when doing my code implementation of the binary search tree and the program's menu logic.
-
-
-- How has your work on this project evolved the way you write programs that are maintainable, readable, and adaptable?
-
-Completing these projects made me reflect further on striking a balance between making my code as generic as possible so that it may work with any given input and optimizing my code to perform the specific functions laid out in the program specifications. Keeping code bases, especially implementations of data structures is useful as this makes it so that the code is extremely versatile and easily re-usable. However, optimizing the code by way of small adjustments to logic or object typing can help to make the specific application of the code excel above generic implementations.
+## Original Artifact
+[Original DSA Artifact](https://github.com/JThomasDevs/SNHU-Portfolio/tree/main/CS-300%20Portfolio%20Submission)
