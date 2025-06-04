@@ -6,7 +6,7 @@ import os
 # Paths to the Java API server JAR and Streamlit app
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 JAR_PATH = os.path.join(BASE_DIR, "target", "rescue-animal-system-1.0-SNAPSHOT.jar")
-STREAMLIT_APP_PATH = os.path.join(BASE_DIR, "src", "view", "app.py")
+STREAMLIT_APP_PATH = os.path.join(BASE_DIR, "src", "app.py")
 
 # Command to start the Java API server
 JAVA_CMD = [
