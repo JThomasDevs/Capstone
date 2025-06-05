@@ -413,4 +413,4 @@ def show_reserve_animal():
         st.error(f"Error loading available animals: {str(e)}")
 
 if __name__ == "__main__":
-    main() 
+    main()
