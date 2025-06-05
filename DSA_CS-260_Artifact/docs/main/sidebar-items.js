@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["ChildSide"],"fn":["load_courses_from_file","main","print_course","print_menu"],"struct":["AVLTree","Course","Node"]};
