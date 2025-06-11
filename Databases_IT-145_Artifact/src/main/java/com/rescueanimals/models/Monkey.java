@@ -40,12 +40,8 @@ public class Monkey extends RescueAnimal {
      * @param height Height in feet
      * @param bodyLength Body length in feet
      */
-    public Monkey(String name, String gender, int age, double weight,
-                 String acquisitionDate, String acquisitionCountry,
-                 String trainingStatus, boolean reserved, String inServiceCountry,
-                 String species, double tailLength, double height, double bodyLength) {
-        super(name, gender, age, weight, acquisitionDate, acquisitionCountry,
-              trainingStatus, reserved, inServiceCountry);
+    public Monkey(String name, String gender, int age, double weight, String acquisitionDate, String acquisitionCountry, String trainingStatus, boolean reserved, String inServiceCountry, String species, double tailLength, double height, double bodyLength) {
+        super(name, gender, age, weight, acquisitionDate, acquisitionCountry, trainingStatus, reserved, inServiceCountry);
         this.species = species;
         this.tailLength = tailLength;
         this.height = height;

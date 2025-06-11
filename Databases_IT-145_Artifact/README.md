@@ -1,11 +1,15 @@
 # Software Design and Engineering Artifact
 
-This project is an enhanced version of my original IT-145 Animal Registry artifact, now featuring a RESTful Java backend and a user-friendly Python GUI. The application allows users to manage, view, and reserve rescue animals (dogs and monkeys) through a modern web interface.
+This project is an enhanced version of my original IT-145 Animal Registry artifact, featuring a RESTful Java backend with SQLite database integration and a user-friendly Python GUI. The application allows users to manage, view, and reserve rescue animals (dogs and monkeys) through a modern web interface with persistent storage.
 
 ## Features
-- **RESTful API (Java, Javalin):** Exposes endpoints for managing animals and reservations.
-- **Python Streamlit GUI:** Provides an intuitive web interface for interacting with the backend.
-- **Modular Design:** Backend and frontend are decoupled, allowing for future expansion (e.g., database integration).
+- **RESTful API (Java, Javalin):** Exposes endpoints for managing animals and reservations
+- **Python Streamlit GUI:** Provides an intuitive web interface for interacting with the backend
+- **Database Integration:** 
+  - SQLite database with JPA/Hibernate ORM
+  - Persistent storage for all animal records
+  - Transaction management for data integrity
+  - Proper error handling and data validation
 
 ## API Endpoints
 The Java backend exposes the following endpoints (default port: 8647):
@@ -22,11 +26,12 @@ The Java backend exposes the following endpoints (default port: 8647):
 - **Java 17** (or compatible version)
 - **Maven** (for building the Java backend)
 - **Python 3** (for the GUI)
+- **SQLite** (included in the project)
 
 ## Building the Java Backend
 
 1. Make sure you have Java 17 and Maven installed.
-2. Open a terminal in the `Design_Engineering_IT-145_Artifact` directory.
+2. Open a terminal in the `Databases_IT-145_Artifact` directory.
 3. Build the Java project with:
    ```
    mvn clean package
@@ -43,7 +48,7 @@ To simplify running both the backend and frontend, use the provided `run_both.py
    ```
    pip install -r requirements.txt
    ```
-3. From the `Design_Engineering_IT-145_Artifact` directory, run:
+3. From the `Databases_IT-145_Artifact` directory, run:
    ```
    python run_both.py
    ```
@@ -59,9 +64,17 @@ To simplify running both the backend and frontend, use the provided `run_both.py
 - **View Animals:** Browse all registered animals, separated by type and availability.
 - **Reserve Animal:** Select an available animal and assign it to a service country.
 
+## Database Structure
+The application uses SQLite with JPA/Hibernate for data persistence:
+- **Tables:**
+  - `Dog`: Stores dog-specific information
+  - `Monkey`: Stores monkey-specific information
+- **Features:**
+  - Automatic schema generation
+  - Transaction management
+  - Data validation
+  - Error handling
+
 ## Original Artifacts
 - [Original IT-145 Java Animal Registry App](https://github.com/JThomasDevs/SNHU-Portfolio/tree/main/Java%20Animal%20Registry%20App)
-
-## Future Enhancements
-- Database integration for persistent storage
 ---

@@ -21,9 +21,7 @@ public class RescueAnimal {
 
     public RescueAnimal() {}
 
-    public RescueAnimal(String name, String gender, int age, double weight,
-                       String acquisitionDate, String acquisitionCountry,
-                       String trainingStatus, boolean reserved, String inServiceCountry) {
+    public RescueAnimal(String name, String gender, int age, double weight, String acquisitionDate, String acquisitionCountry, String trainingStatus, boolean reserved, String inServiceCountry) {
         this.name = name;
         this.gender = gender;
         this.age = age;

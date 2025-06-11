@@ -31,12 +31,8 @@ public class Dog extends RescueAnimal {
      * @param inServiceCountry Country where the dog is in service
      * @param breed Dog's breed
      */
-    public Dog(String name, String gender, int age, double weight,
-              String acquisitionDate, String acquisitionCountry,
-              String trainingStatus, boolean reserved, String inServiceCountry,
-              String breed) {
-        super(name, gender, age, weight, acquisitionDate, acquisitionCountry,
-              trainingStatus, reserved, inServiceCountry);
+    public Dog(String name, String gender, int age, double weight, String acquisitionDate, String acquisitionCountry, String trainingStatus, boolean reserved, String inServiceCountry, String breed) {
+        super(name, gender, age, weight, acquisitionDate, acquisitionCountry, trainingStatus, reserved, inServiceCountry);
         this.breed = breed;
     }
 

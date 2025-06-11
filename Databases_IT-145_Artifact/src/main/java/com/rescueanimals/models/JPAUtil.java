@@ -39,9 +39,8 @@ public class JPAUtil {
                 
                 // Create EntityManagerFactory
                 entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-            } catch (Exception e) {
+            } catch (ClassNotFoundException e) {
                 System.err.println("Error creating EntityManagerFactory: " + e.getMessage());
-                e.printStackTrace();
                 throw new RuntimeException("Could not create EntityManagerFactory", e);
             }
         }

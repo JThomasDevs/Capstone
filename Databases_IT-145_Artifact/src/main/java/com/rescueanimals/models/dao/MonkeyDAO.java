@@ -20,12 +20,9 @@ public class MonkeyDAO {
      * @return List of all monkeys in the system
      */
     public List<Monkey> getAllMonkeys() {
-        EntityManager em = JPAUtil.getEntityManager();
-        try {
+        try (EntityManager em = JPAUtil.getEntityManager()) {
             TypedQuery<Monkey> query = em.createQuery("SELECT m FROM Monkey m", Monkey.class);
             return query.getResultList();
-        } finally {
-            em.close();
         }
     }
 
@@ -36,11 +33,8 @@ public class MonkeyDAO {
      * @return The monkey with the specified name
      */
     public Monkey getMonkeyByName(String name) {
-        EntityManager em = JPAUtil.getEntityManager();
-        try {
+        try (EntityManager em = JPAUtil.getEntityManager()) {
             return em.find(Monkey.class, name);
-        } finally {
-            em.close();
         }
     }
 
