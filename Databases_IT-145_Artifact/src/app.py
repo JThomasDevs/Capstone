@@ -20,8 +20,8 @@ from animals import Dog, Monkey
 # Use a wide layout and custom title.
 # This ensures the app uses the full browser width
 st.set_page_config(
-    page_title="Rescue Animal System",
-    page_icon=None,
+    page_title="Rescue Animal Management System",
+    page_icon="🐾",
     layout="wide"
 )
 
@@ -108,10 +108,6 @@ def show_add_animal():
     """
     st.header("Add New Animal")
     
-    # Use session state to track form submission
-    if 'form_submitted' not in st.session_state:
-        st.session_state.form_submitted = False
-    
     animal_type = st.selectbox("Select Animal Type", ["Dog", "Monkey"])
     
     with st.form(f"add_{animal_type.lower()}_form"):
@@ -147,6 +143,12 @@ def show_add_animal():
             help="Select the current training phase of the animal"
         )
         
+        # Service Country field: always enabled, only required if in service
+        service_country = st.text_input(
+            "Service Country*",
+            help="Enter the country where the animal will serve"
+        )
+        
         if animal_type == "Dog":
             breed = st.text_input("Breed*", help="Enter the dog's breed")
         else:  # Monkey
@@ -155,7 +157,6 @@ def show_add_animal():
                 ["capuchin", "guenon", "macaque", "marmoset", "squirrel monkey", "tamarin"],
                 help="Select the monkey's species"
             )
-            
             # Organize monkey measurements in columns
             col1, col2, col3 = st.columns(3)
             with col1:
@@ -167,7 +168,7 @@ def show_add_animal():
             with col3:
                 body_length = st.text_input("Body Length* (ft)", 
                                           help="Enter the body length in feet")
-        
+
         submitted = st.form_submit_button("Add Animal")
         
         if submitted:
@@ -187,6 +188,10 @@ def show_add_animal():
                 st.error("Age and weight must be valid numbers")
                 return
             
+            if training_status == "in service" and not service_country:
+                st.error("Please enter the service country for an animal in service.")
+                return
+            
             try:
                 # Create the base animal data
                 animal_data = {
@@ -194,26 +199,25 @@ def show_add_animal():
                     "gender": gender.lower(),
                     "age": str(age_float),
                     "weight": str(weight_float),
-                    "acquisitionDate": acquisition_date.strftime("%m-%d-%Y"),
+                    "acquisitionDate": acquisition_date.strftime("%Y-%m-%d"),
                     "acquisitionCountry": acquisition_country.strip(),
                     "trainingStatus": training_status,
                     "reserved": False,
-                    "inServiceCountry": None
+                    "inServiceCountry": service_country.strip() if service_country else None
                 }
                 
                 if animal_type == "Dog":
                     if not breed:
                         st.error("Please enter the dog's breed")
                         return
+                    if training_status == "in service" and not service_country:
+                        st.error("Please enter the service country for an animal in service.")
+                        return
                     
-                    # Create dog with breed
                     animal_data["breed"] = breed.strip()
-                    # Debug logging
-                    st.write("Creating dog with data:", animal_data)
                     dog = Dog(**animal_data)
                     success = api.add_dog(dog)
-                    # Debug logging
-                    st.write("Add dog result:", success)
+                    st.success(f"Dog {name} added successfully!")
                 else:
                     # Validate monkey measurements
                     try:
@@ -234,12 +238,15 @@ def show_add_animal():
                         "height": str(height_float),
                         "bodyLength": str(body_float)
                     })
+                    if training_status == "in service" and not service_country:
+                        st.error("Please enter the service country for an animal in service.")
+                        return
                     monkey = Monkey(**animal_data)
                     success = api.add_monkey(monkey)
+                    st.success(f"Monkey {name} added successfully!")
                 
                 if success:
-                    st.success(f"{animal_type} added successfully!")
-                    st.session_state.form_submitted = True
+                    st.session_state.current_page = "View Animals"
                     st.rerun()
                 else:
                     st.error(f"Failed to add {animal_type.lower()}. The name may already be taken.")
@@ -261,16 +268,16 @@ def show_view_animals():
     
     try:
         with tab1:  # Dogs
-            animals = api.get_dogs()
-            show_animals_table(animals, "dog")
+            dogs = api.get_dogs()
+            show_animals_table(dogs, "dog")
             
         with tab2:  # Monkeys
-            animals = api.get_monkeys()
-            show_animals_table(animals, "monkey")
+            monkeys = api.get_monkeys()
+            show_animals_table(monkeys, "monkey")
             
         with tab3:  # Available Animals
-            available = api.get_available()
-            show_available_animals(available)
+            available_animals = api.get_available_animals()
+            show_available_animals(available_animals)
     except Exception as e:
         st.error(f"Error fetching animals: {str(e)}")
 
@@ -280,71 +287,57 @@ def show_animals_table(animals, animal_type):
     Uses a FILLER placeholder to insert type-specific columns in a consistent order.
     Ensures only existing columns are displayed, preventing index errors.
     """
-    if not animals:
-        st.warning(f"No {animal_type}s currently available.")
-        return
-    
-    # Convert to DataFrame for display
-    df = pd.DataFrame([vars(animal) for animal in animals])
-    
-    # Add units to measurements
-    if 'age' in df.columns:
-        df['age'] = df['age'].astype(str) + ' years'
-    if 'weight' in df.columns:
-        df['weight'] = df['weight'].astype(str) + ' lbs'
-    if 'tailLength' in df.columns:
-        df['tailLength'] = df['tailLength'].astype(str) + ' ft'
-    if 'height' in df.columns:
-        df['height'] = df['height'].astype(str) + ' ft'
-    if 'bodyLength' in df.columns:
-        df['bodyLength'] = df['bodyLength'].astype(str) + ' ft'
-    
-    # Format boolean values first
-    if 'reserved' in df.columns:
-        df['reserved'] = df['reserved'].map({True: 'Yes', False: 'No'})
-    
-    # Rename columns for better display
-    column_map = {
-        'name': 'Name',
-        'gender': 'Gender',
-        'breed': 'Breed',
-        'species': 'Species',
-        'age': 'Age (years)',
-        'weight': 'Weight (lbs)',
-        'acquisitionDate': 'Acquisition Date',
-        'acquisitionCountry': 'Acquisition Country',
-        'trainingStatus': 'Training Status',
-        'inServiceCountry': 'Service Country',
-        'tailLength': 'Tail Length (ft)',
-        'bodyLength': 'Body Length (ft)',
-        'height': 'Height (ft)',
-        'reserved': 'Reserved'
-    }
-    df = df.rename(columns=column_map)
-    
-    # Define special columns for each type
-    dog_special = ['Breed']
-    monkey_special = ['Species', 'Tail Length (ft)', 'Height (ft)', 'Body Length (ft)']
-    
-    # Define base columns with FILLER placeholder
-    columns = ','.join(['Name', 'Gender', 'Age (years)', 'Weight (lbs)', 'FILLER', 'Acquisition Date', 'Acquisition Country', 'Service Country', 'Training Status', 'Reserved'])
-    
-    # Replace FILLER with type-specific columns
     if animal_type == "dog":
-        columns = columns.replace('FILLER', ','.join(dog_special))
-    else:  # monkey
-        columns = columns.replace('FILLER', ','.join(monkey_special))
-    
-    # Convert back to list and filter existing columns
-    final_cols = [col for col in columns.split(',') if col in df.columns]
-    df = df[final_cols]
-    
-    # Display the DataFrame
-    st.dataframe(
-        df,
-        use_container_width=True,
-        hide_index=True
-    )
+        columns = [
+            ("Name", "name"),
+            ("Gender", "gender"),
+            ("Age (years)", "age"),
+            ("Weight (lbs)", "weight"),
+            ("Breed", "breed"),
+            ("Acquisition Date", "acquisitionDate"),
+            ("Acquisition Country", "acquisitionCountry"),
+            ("Service Country", "inServiceCountry"),
+            ("Training Status", "trainingStatus"),
+            ("Reserved", "reserved"),
+        ]
+    elif animal_type == "monkey":
+        columns = [
+            ("Name", "name"),
+            ("Gender", "gender"),
+            ("Age (years)", "age"),
+            ("Weight (lbs)", "weight"),
+            ("Species", "species"),
+            ("Tail Length (ft)", "tailLength"),
+            ("Height (ft)", "height"),
+            ("Body Length (ft)", "bodyLength"),
+            ("Acquisition Date", "acquisitionDate"),
+            ("Acquisition Country", "acquisitionCountry"),
+            ("Service Country", "inServiceCountry"),
+            ("Training Status", "trainingStatus"),
+            ("Reserved", "reserved"),
+        ]
+    else:
+        return
+
+    data = []
+    for animal in animals:
+        row = []
+        for col, attr in columns:
+            value = getattr(animal, attr, "")
+            if attr == "reserved":
+                value = "Yes" if value else "No"
+            elif attr == "age":
+                value = f"{value} years"
+            elif attr == "weight":
+                value = f"{value} lbs"
+            elif attr in ("tailLength", "height", "bodyLength"):
+                value = f"{value} ft"
+            row.append(value)
+        data.append(row)
+
+    # Remove the index column by setting index=False
+    df = pd.DataFrame(data, columns=[col for col, _ in columns])
+    st.dataframe(df, hide_index=True)
 
 def show_available_animals(available):
     """
@@ -353,7 +346,6 @@ def show_available_animals(available):
     """
     st.subheader("Available Dogs")
     show_animals_table(available["dogs"], "dog")
-    
     st.subheader("Available Monkeys")
     show_animals_table(available["monkeys"], "monkey")
 
@@ -367,13 +359,13 @@ def show_reserve_animal():
     
     try:
         # Get available animals
-        available = api.get_available()
+        available_animals = api.get_available_animals()
         
         # Let user choose animal type
         animal_type = st.selectbox("Select Animal Type", ["Dog", "Monkey"])
         
         # Get the appropriate list of animals
-        animals = available["dogs"] if animal_type == "Dog" else available["monkeys"]
+        animals = available_animals["dogs"] if animal_type == "Dog" else available_animals["monkeys"]
         
         if not animals:
             st.warning(f"No {animal_type.lower()}s available for reservation")
