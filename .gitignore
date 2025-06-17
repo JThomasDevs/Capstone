@@ -26,3 +26,6 @@ courseoutcomes.md
 
 # Build
 dependency-reduced-pom.xml
+
+# Self
+.gitignore
