@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 65vw;
+            margin: 0 auto;
+            padding: 20px;
+            color: #24292e;
+            background-color: #fff;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        h1 {
+            font-size: 2.5em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            text-align: center;
+            margin: 0 auto;
+            width: fit-content;
+            padding: 0 10px;
+        }
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        details {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: 600;
+            padding: 10px;
+            color: #0366d6;
+        }
+        summary:hover {
+            color: #024ea4;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        blockquote {
+            margin: 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+        }
+        code {
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            background-color: rgba(27,31,35,0.05);
+            border-radius: 3px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        }
+        ul, ol {
+            padding-left: 2em;
+        }
+        li {
+            margin: 0.25em 0;
+        }
+        em {
+            font-style: italic;
+        }
+        strong {
+            font-weight: 600;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 20px 0;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .indent {
+            padding-left: 2em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Page content for GH Pages -->
+    <h1><b>Capstone</b></h1>
+
+    <!-- Professional Self-Assesment -->
+    <h2>Self-Assesment</h2>
+    <p><em>In progress...</em></p>
+
+    <!-- Code Review Video -->
+    <h2><strong>Code Review</strong></h2>
+    <p>&emsp; The first step in conceptualizing the enhancements made to my chosen artifacts was completing an in-depth code review for the artifacts in their original state.</p>
+
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/Ge65v-B6JPI" 
+                title="Capstone Artifact Code Review" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- Artifacts -->
+    <h2><strong>Artifacts</strong></h2>
+    <p>I chose to enhance two artifacts from previous Computer Science courses.</p>
+
+    <p>&emsp; The first and third enhancements were implemented on an artifact from my <strong><em>Intro to Software Development</em></strong> course.<br>
+    This artifact has been enhanced in the areas of <em>Software Design and Engineering</em> and <em>Databases</em> through the addition of a web based UI and an SQLite database for persistent storage.<br>
+    <blockquote>Artifact 1 in pre-enhancement state can be found <a href="./Artifact%201%20Original%20State/">here</a>.</blockquote></p>
+
+    <p>&emsp; The second enhancement was implemented on an artifact from my <strong><em>Data Structures and Algorithms</em></strong> course.<br>
+    This artifact has been enhanced in the area of <em>Data Structures and Algorithms</em> with the original BST being converted to an AVL tree, rewritten in Rust.<br>
+    <blockquote>Artifact 2 in pre-enhancement state can be found <a href="./Artifact%202%20Original%20State/">here</a>.</blockquote></p>
+
+    <!-- Narratives -->
+    <h2><strong>Enhancement Narratives</strong></h2>
+    <p>&emsp; Alongside each enhancement, I created an accompanying narrative that covers the origins of the artifact, why I chose to enhance the artifact for my Capstone portfolio, detailed breakdowns of the enhancement(s) made for the artifact, how the enhancements support the desired course outcomes, and a reflection of the enhancement process.</p>
+
+    <p><em>For convenience, each narrative has been formatted for markdown and included below.</em></p>
+
+    <!-- Narrative for Enhancement 1 -->
+    <details>
+        <summary><strong>Enhancement 1 Narrative: Design and Software Engineering</strong></summary>
+
+        <p><strong><u>Artifact Description</u></strong></p>
+
+        <p>&emsp; The original artifact enhanced in this milestone was a simple Java command line application that allows users to register, view, and reserve rescue animals. This artifact was originally created in Summer of 2023 and was primarily composed of basic Java classes and a Driver responsible for business logic. Due to the limited scope of the original artifact, the core functionality consists of I/O operations in the console and using in-memory storage.</p>
+
+        <p><strong><u>Justification for Inclusion</u></strong></p>
+
+        <p>&emsp; I chose this artifact for my ePortfolio because I believe that it can greatly benefit from an interactive user interface that is easy to navigate and operate. In its original form, the application feels clunky and unintuitive at times - especially when registering a new animal - due to the intentionally minimal design of the original artifact. By transforming the artifact from a basic console application into a multi-component, reactive system, I can showcase a range of software development skills.</p>
+
+        <p>This milestone contains two major enhancements:</p>
+
+        <ul>
+            <li><em>Creation of the RESTful API</em>
+
+            <p>&emsp; To enable interoperability between the Java backend and the Python frontend, I designed and built a RESTful API in Java. This API exposes the core functionality of the app (with some optimizations) which allows it to be accessed by external clients. Having an API also enhances the flexibility of my code.</p></li>
+
+            <li><em>Development of a Python GUI</em>
+
+            <p>&emsp; I chose to build the GUI enhancement in Python, leveraging the Streamlit framework, my previous experience with web-based development, and my experience creating a UX focused reactive UI in Tkinter. The choice to implement the GUI in Python necessitated the creation of the Java API to ensure that the frontend can utilize the functionality of the Java backend to update and edit program data in a user-friendly interface.</p></li>
+        </ul>
+
+        <p>&emsp; These enhancements demonstrate my ability to design and build cross-language solutions, design an API, and create a UI that is both UX and performance focused. The artifact now displays my understanding of backend and frontend development, in addition to my ability to modernize and extend legacy code.</p>
+
+        <p><strong><u>Course Outcomes and Updates</u></strong></p>
+
+        <p>&emsp; The enhancements made in this milestone support the course outcomes I aimed to meet in several ways:</p>
+        <ul>
+            <li>Adding an API and Python GUI allows for easier collaboration and updates by others.</li>
+            <li>Aimed to keep documentation for the components of the system clear for users and anyone who might view the project later. I did this using Javadoc style comments in the Java portions and Pydoc-like Docstrings for the Python portions.</li>
+            <li>I used standard tools and methods for building the API and GUI.</li>
+            <li>Basic security practices like handling malformed data and input validation were followed in the API design.</li>
+        </ul>
+
+        <p>&emsp; Most of these updates are in line with my original plans. The only unplanned update in this milestone is the inclusion of the Java API.</p>
+
+        <p><strong><u>Reflection on the Enhancement Process</u></strong></p>
+
+        <p>&emsp; Enhancing this project from a simple Java console app to a system with a UX-focused UI and an API was a strong reinforcement of concepts that I had encountered through previous courses and personal projects. Choosing Python as the language to write the GUI meant that I needed a way for it to communicate with the Java backend. Originally, I tried a CLI based approach that got to a point where it felt overengineered and too clunky, resulting in the decision to move towards a RESTful API. I had implemented an API before and made a UX-focused GUI before, but I had not previously implemented them on the same program.</p>
+
+        <p>&emsp; Several parts of the process presented unique challenges I had not encountered before. One such challenge was getting data to be serialized to JSON from the Java backend and then deserializing that data with Python. What seemed like a straightforward task turned into a struggle to transform specific types of data structures into JSON keys and values. This, however, I attribute to my lack of experience with Java syntax and data type names/functions.</p>
+
+        <p>&emsp; Overall, the work done this milestone helped me get more exposure to connecting different system components written in different languages. It also reinforced the concepts I already held close about designing an application for future expansion by creating clear interfaces, separating concerns, and making choices that ease the implementation of new features and changes in the future.</p>
+    </details>
+
+    <!-- Narrative for Enhancement 2 -->
+    <details>
+        <summary><strong>Enhancement 2 Narrative: Data Structures and Algorithms</strong></summary>
+
+        <p><strong><u>Artifact Description</u></strong></p>
+
+        <p>&emsp; The original artifact enhanced in this milestone was a C++ implementation of a basic binary search tree (BST). It was submitted as one of the final projects in my Data Structures and Algorithms course. The BST provided standard operations such as insertion, deletion, search, and in-order traversal. I chose this artifact to enhance in the area of Data Structures and Algorithms as part of my Capstone project. By implementing self-balancing to the BST, I have enhanced the worst-case performance of search, insert, and delete operations from O(n) time for a given operation to O(log n) for the same operations with the AVL tree. Additionally, by rewriting in the Rust language, I have guaranteed memory safety throughout the entire program due to Rust's concept of "ownership" and its accompanying borrow checker.</p>
+
+        <p><strong><u>Justification for Inclusion</u></strong></p>
+
+        <p>&emsp; I chose this artifact for my ePortfolio because it demonstrates my ability to assess and improve upon previous work through the use of performant data structures and modern programming languages. The original C++ BST was susceptible to degradation of performance in the worst case and displayed the ease of writing memory unsafe code in a language like C++. By rewriting the artifact in Rust and implementing an AVL tree, I was able to demonstrate several key skills:</p>
+
+        <ul>
+            <li><em>Memory Safety and Reliability</em>
+
+            <p>&emsp; Rust's concept of ownership and strict compile-time checks done by the borrow checker eliminate entire categories of bugs, like dangling pointers and improper memory management. This makes the Rust implementation inherently safer and more resistant to bugs/undefined behavior.</p></li>
+
+            <li><em>Explicit Error Handling</em>
+
+            <p>&emsp; In Rust, the <code>Option</code> type provides a memory safe alternative to null pointers by providing an enum wrapper where a value either exists - <code>Some(val)</code> - or does not exist - <code>None</code>. Similarly, the <code>Result</code> type in Rust provides an alternative to error handling with try-catch blocks. Instead of throwing errors to be caught somewhere else, a process that returns a <code>Result</code> can either return <code>Ok(optional_val)</code> or <code>Err(err_msg)</code> that serves as a wrapper around the expected value or the returned error message. This enables Rust to return one type that can represent both success and failure as opposed to the old system of throwing exceptions to be later caught.</p></li>
+
+            <li><em>Algorithmic Improvement</em>
+
+            <p>&emsp; Upgrading from a regular BST to an AVL tree ensures that the tree remains balanced after every operation. This guarantees O(log n) worst-case time complexity for search, insert, and delete operations. This is a large improvement over the original BST, which has a worst-case time complexity of O(n) for the same operations.</p></li>
+        </ul>
+
+        <p>&emsp; These enhancements demonstrate my ability to apply algorithmic principles, leverage language features for safer code, and optimize data structures for real-world use cases.</p>
+
+        <p><strong><u>Course Outcomes and Updates</u></strong><br>
+        <span>&emsp; The enhancements made in this milestone support the course outcomes in the following ways:</span></p>
+
+        <ul>
+            <li>By using Rust's documentation tools, I made the codebase more approachable for future collaborators, supporting diverse audiences in understanding and extending the project.</li>
+
+            <li>I maintained clear, technically sound documentation throughout the code, using Rustdoc comments and providing usage examples to ensure the project is accessible to both technical and non-technical audiences.</li>
+
+            <li>The move from a C++ BST to a Rust AVL tree directly demonstrates my ability to design and evaluate computing solutions using appropriate algorithmic principles, while managing trade-offs between performance and complexity.</li>
+
+            <li>Adopting Rust for this project showcases my willingness to use innovative tools and techniques in software engineering, moving beyond traditional languages to deliver more reliable and maintainable solutions.</li>
+
+            <li>Rust's memory safety guarantees and explicit error handling help mitigate common vulnerabilities, such as buffer overflows and null pointer dereferences, thereby enhancing the security and reliability of the artifact.</li>
+        </ul>
+
+        <p>&emsp; These updates are in line with my original plans for the capstone. The only notable change is the deeper focus on leveraging Rust's safety features, which became more apparent as I worked through the enhancement process.</p>
+
+        <p><strong><u>Reflection</u></strong></p>
+
+        <p>&emsp; Enhancing this artifact from a C++ BST to a Rust AVL tree was both challenging and rewarding. The process required me to adapt recursive tree algorithms to Rust's strict ownership and borrowing model, which fortified my understanding of the strengths and limitations of the Rust language.</p>
+
+        <p>&emsp; Already having a base familiarity with Rust, applying the ownership and borrowing rules to a complex, pointer-heavy data structure like an AVL tree deepened my understanding of the nuances in the ownership and borrow checker models that are not immediately obvious. One such nuance was the inability for a <code>struct</code> to have a member variable that is of its own type - a <code>Node</code> that has left and right children that are also <code>Node</code> type. To solve this, I used the <code>Box</code> smart pointer provided by Rust, which points to data allocated on the heap. Additionally, Rust's pattern matching made it easier to handle cases that would have required careful pointer management and null checks in C++.</p>
+
+        <p>&emsp; By transitioning from a BST to an AVL tree, I also learned more about the importance of algorithmic efficiency. Implementing the balancing logic gave me a deeper understanding of how data structures can degrade into inefficient messes and how simple changes can mitigate the degradation.</p>
+    </details>
+
+    <!-- Narrative for Enhancement 3 -->
+    <details>
+        <summary><strong>Enhancement 3 Narrative: Databases</strong></summary>
+
+        <p><strong><u>Artifact Description</u></strong></p>
+
+        <p>&emsp; The artifact is a Rescue Animal Management System that originated as my final project for IT-145 (Introduction to Software Development). Originally, the project was designed as an exercise in implementing inheritance and encapsulation in Java, focusing on creating a mockup animal rescue and reservation system. After my initial enhancement that added a RESTful API and Python Streamlit frontend, this enhancement focuses on implementing persistent storage using JPA/Hibernate with SQLite and adapting the data models for database integration.</p>
+
+        <p><strong><u>Justification for ePortfolio Inclusion</u></strong></p>
+
+        <p>&emsp; I selected this artifact for my ePortfolio because it demonstrates my ability to implement professional grade database solutions by extending and modifying existing software. The enhancement process included:</p>
+
+        <ul>
+            <li><em>Database Integration:</em> I implemented persistent storage using JPA/Hibernate with SQLite, which:
+                <ul>
+                    <li>Replaced in memory storage with an SQLite database</li>
+                    <li>Implemented proper transaction management for database state consistency</li>
+                    <li>Demonstrated understanding of ORM principles</li>
+                    <li>Obfuscates DB operations behind object-oriented interfaces</li>
+                    <li>Use of prepared SQL queries to prevent injection style attacks</li>
+                </ul>
+            </li>
+
+            <li><em>Data Model Adaptation:</em> I modified the existing models to work with JPA/Hibernate:
+                <ul>
+                    <li>Added proper JPA annotations (@Entity, @Column, @MappedSuperclass)</li>
+                    <li>Created Data Access Objects (DAOs) for handling object related DB operations</li>
+                </ul>
+            </li>
+
+            <li><em>Architecture Improvement:</em> The system now follows proper layered architecture:
+                <ul>
+                    <li>Clear separation between models, DAOs, and controllers</li>
+                    <li>More robust error handling</li>
+                </ul>
+            </li>
+        </ul>
+
+        <p><strong><u>Course Outcomes Achievement</u></strong></p>
+
+        <p>&emsp; The enhancement successfully addressed several course outcomes:</p>
+        <ul>
+            <li>Implemented professional database solution using JPA/Hibernate</li>
+            <li>Designed efficient database queries</li>
+            <li>Implemented proper data access patterns</li>
+            <li>Created reusable data access components</li>
+            <li>Added comprehensive Javadoc documentation</li>
+            <li>Implemented proper error handling and logging</li>
+            <li>Maintained clean code structure</li>
+            <li>Implemented proper transaction management</li>
+            <li>Protected against SQL injection through JPA+Hibernate</li>
+        </ul>
+
+        <p><strong><u>Reflection on the Enhancement Process</u></strong></p>
+
+        <p>&emsp; The process of enhancing this artifact provided valuable learning experiences in database implementation and system architecture. Through the implementation of JPA/Hibernate with SQLite, I gained a deeper understanding of proper ORM configuration, transaction management, and data access patterns. The enhancement process required careful consideration of error handling in database operations, particularly when dealing with concurrent operations and transaction management to maintain database integrity.</p>
+
+        <p>&emsp; The most significant challenge I faced was adapting the existing models to work with JPA/Hibernate while maintaining the original inheritance structure. This required careful consideration of proper annotation placement and inheritance mapping, as well as implementing robust transaction management and error handling. The process of configuring JPA/Hibernate with SQLite presented unique challenges, particularly in ensuring the interoperability of the various dependencies.</p>
+
+        <p>&emsp; Through this enhancement, I learned the importance of proper layered architecture and the value of separation of concerns. Implementing the DAO pattern effectively was crucial in maintaining a clean separation between the data access layer and the business logic. This experience taught me how to maintain backward compatibility while evolving a system from in-memory storage to a proper database backed solution. The implementation of JPA/Hibernate with SQLite has provided valuable insights into professional database design practices, significantly improving my understanding of database implementation and ORM principles.</p>
+    </details>
+</body>
+</html> 
