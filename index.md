@@ -17,12 +17,12 @@ The first step in conceptualizing the enhancements made to my chosen artifacts w
 
 I chose to enhance two artifacts from previous Computer Science courses.
 
-The first and third enhancements were implemented on an artifact from my **_Intro to Software Development_** course.</br> 
-This artifact has been enhanced in the areas of _Software Design and Engineering_ and _Databases_ through the addition of a web based UI and an SQLite database for persistent storage.</br>
+The first and third enhancements were implemented on an artifact from my **_Intro to Software Development_** course.  
+This artifact has been enhanced in the areas of _Software Design and Engineering_ and _Databases_ through the addition of a web based UI and an SQLite database for persistent storage.  
 > Artifact 1 in pre-enhancement state can be found [here](./Artifact%201%20Original%20State/).
 
-The second enhancement was implemented on an artifact from my **_Data Structures and Algorithms_** course.</br>
-This artifact has been enhanced in the area of _Data Structures and Algorithms_ with the original BST being converted to an AVL tree, rewritten in Rust.</br>
+The second enhancement was implemented on an artifact from my **_Data Structures and Algorithms_** course.  
+This artifact has been enhanced in the area of _Data Structures and Algorithms_ with the original BST being converted to an AVL tree, rewritten in Rust.  
 > Artifact 2 in pre-enhancement state can be found [here](./Artifact%202%20Original%20State/).
 
 <!-- Narratives -->
@@ -68,7 +68,7 @@ This milestone contains two major enhancements:
 </br>
 &emsp; Overall, the work done this milestone helped me get more exposure to connecting different system components written in different languages. It also reinforced the concepts I already held close about designing an application for future expansion by creating clear interfaces, separating concerns, and making choices that ease the implementation of new features and changes in the future.
 </details>
-</br>
+  
 
 <!-- Narrative for Enhancment 2 -->
 <details>
@@ -119,7 +119,7 @@ This milestone contains two major enhancements:
 </br>
 &emsp; By transitioning from a BST to an AVL tree, I also learned more about the importance of algorithmic efficiency. Implementing the balancing logic gave me a deeper understanding of how data structures can degrade into inefficient messes and how simple changes can mitigate the degradation.
 </details>
-</br>
+  
 
 <!-- Narrative for Enhancement 3 -->
 <details>
@@ -168,4 +168,3 @@ This milestone contains two major enhancements:
 </br>
 &emsp; Through this enhancement, I learned the importance of proper layered architecture and the value of separation of concerns. Implementing the DAO pattern effectively was crucial in maintaining a clean separation between the data access layer and the business logic. This experience taught me how to maintain backward compatibility while evolving a system from in-memory storage to a proper database backed solution. The implementation of JPA/Hibernate with SQLite has provided valuable insights into professional database design practices, significantly improving my understanding of database implementation and ORM principles.
 </details>
-
