@@ -10,7 +10,7 @@
 
 The first step in conceptualizing the enhancements made to my chosen artifacts was completing an in-depth code review for the artifacts in their original state.
 
-<video src='https://youtu.be/Ge65v-B6JPI' width='840' height='474' controls></video>
+[![Capstone Artifact Code Review link](https://img.youtube.com/vi/Ge65v-B6JPI/0.jpg)](https://www.youtube.com/watch?v=Ge65v-B6JPI)
 
 <!-- Artifacts -->
 ## **Artifacts**
