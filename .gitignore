@@ -23,6 +23,7 @@ Cargo.lock
 # Documentation
 *Script.md
 courseoutcomes.md
+self_assessment.md
 
 # Build
 dependency-reduced-pom.xml
